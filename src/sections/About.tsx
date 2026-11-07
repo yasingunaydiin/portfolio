@@ -13,6 +13,7 @@ import theNetherlandsMapImage from '@/assets/images/the-netherlands-map.png';
 import turkeyMapImage from '@/assets/images/turkey-map.png';
 import { Card } from '@/components/Card';
 import { CardHeader } from '@/components/CardHeader';
+import { useLanguage } from '@/components/LanguageProvider';
 import { ToolboxItems } from '@/components/ToolboxItems';
 import Image from 'next/image';
 
@@ -55,26 +56,44 @@ const toolboxItems = [
   },
 ];
 
+const serverToolboxItems = [
+  { title: 'Nginx', iconType: '/icons/server/nginx.svg' },
+  { title: 'PHP-FPM', iconType: '/icons/server/php.svg' },
+  { title: 'MySQL 8.x', iconType: '/icons/server/mysql.svg' },
+  { title: 'Redis', iconType: '/icons/server/redis.svg' },
+  { title: 'Varnish', iconType: '/icons/server/varnish.svg' },
+  { title: 'Linux & Shell', iconType: '/icons/server/linux.svg' },
+  { title: 'DNS', iconType: '/icons/server/dns.svg' },
+  { title: 'Email', iconType: '/icons/server/email.svg' },
+];
+
+const hostingToolboxItems = [
+  { title: 'Cloudflare', iconType: '/icons/server/cloudflare.svg' },
+  { title: 'WAF', iconType: '/icons/server/waf.svg' },
+  { title: 'Bot Mitigation', iconType: '/icons/server/bot.svg' },
+  { title: 'Magento', iconType: '/icons/server/magento.svg' },
+  { title: 'Shopware', iconType: '/icons/server/shopware.svg' },
+  { title: 'WordPress', iconType: '/icons/server/wordpress.svg' },
+  { title: 'WooCommerce', iconType: '/icons/server/woocommerce.svg' },
+];
+
 export const AboutSection = () => {
   // const constraintRef = useRef(null);
+  const { t } = useLanguage();
+
   return (
     <div className='py-20'>
       <div className='container'>
-        <h2 className='text-3xl text-center md:text-5xl'>A Little About Me</h2>
-        <p className='text-base text-center md:text-2xl mt-3'>Who am I?</p>
-        <p className='text-sm text-center md:text-1xl mt-3'>
-          Born in Doetinchem, The Netherlands, I’m a front-end developer and
-          native Turkish-Dutch translator with a degree in English Translation
-          and Interpretation Studies. With a foot in both Turkey and The
-          Netherlands, I blend creativity and functionality to craft
-          user-friendly web experiences, bringing a unique multicultural
-          perspective to my work.
+        <h2 className='text-3xl text-center md:text-5xl'>{t.about.title}</h2>
+        <p className='text-base text-center md:text-2xl mt-3'>
+          {t.about.subtitle}
         </p>
+        <p className='text-sm text-center md:text-1xl mt-3'>{t.about.intro}</p>
         <div className='mt-10 flex flex-col gap-6'>
           <Card className='h-[320px] p-0'>
             <CardHeader
-              title='My Toolbox'
-              description='Explore the technologies and tools I use to create projects.'
+              title={t.about.toolboxTitle}
+              description={t.about.toolboxDescription}
               className='px-6 pt-6'
             />
             <ToolboxItems
@@ -89,15 +108,33 @@ export const AboutSection = () => {
             />
           </Card>
 
+          <Card className='h-[320px] p-0'>
+            <CardHeader
+              title={t.about.serverToolboxTitle}
+              description={t.about.serverToolboxDescription}
+              className='px-6 pt-6'
+            />
+            <ToolboxItems
+              items={serverToolboxItems}
+              className='mt-6'
+              itemsWrapperClassName='animate-move-left'
+            />
+            <ToolboxItems
+              items={hostingToolboxItems}
+              className='mt-6'
+              itemsWrapperClassName='animate-move-right'
+            />
+          </Card>
+
+
           <div className='flex flex-col gap-8'>
-            <h2 className='text-3xl text-center md:text-5xl'>Where Am I?</h2>
+            <h2 className='text-3xl text-center md:text-5xl'>
+              {t.about.whereAmI}
+            </h2>
             <p className='text-sm text-center md:text-1xl'>
-              I'm deeply connected to both of my home countries, where my roots
-              and experiences come together. These two places have shaped my
-              perspective and the way I approach my work.{' '}
-              <strong> Now based in Doetinchem</strong>, I continue to draw
-              inspiration from both cultures. The map below highlights the key
-              locations that have influenced my journey.
+              {t.about.locationBefore}{' '}
+              <strong>{t.about.locationStrong}</strong>
+              {t.about.locationAfter}
             </p>
 
             <Card className='h-[250px] p-0 relative col-span-2'>

@@ -9,7 +9,7 @@ export const ToolboxItems = ({
 }: {
   items: {
     title: string;
-    iconType: string; // Treat iconType as a URL (string)
+    iconType?: string; // Treat iconType as a URL (string), optional for text-only items
   }[];
   className?: string;
   itemsWrapperClassName?: string;
@@ -36,12 +36,14 @@ export const ToolboxItems = ({
                   key={item.title}
                   className="inline-flex items-center gap-4 py-2 px-3 outline outline-2 outline-black/10 rounded-lg"
                 >
-                  <Image
-                    src={item.iconType}
-                    alt={item.title}
-                    width={32}
-                    height={32}
-                  />{' '}
+                  {item.iconType && (
+                    <Image
+                      src={item.iconType}
+                      alt={item.title}
+                      width={32}
+                      height={32}
+                    />
+                  )}{' '}
                   {/* Use Image component */}
                   <span className="font-semibold">{item.title}</span>
                 </div>

@@ -2,9 +2,12 @@
 import ArrowDown from '@/assets/icons/arrow-down.svg';
 import grainImage from '@/assets/images/grain.jpg';
 import memojiImage from '@/assets/images/memoji-computer2.png';
+import { useLanguage } from '@/components/LanguageProvider';
 import Image from 'next/image';
 
 export const HeroSection = () => {
+  const { t } = useLanguage();
+
   const scrollToProjects = () => {
     const projectSection = document.getElementById('projectsSection');
     if (projectSection) {
@@ -41,15 +44,14 @@ export const HeroSection = () => {
             alt='Person peeking from behind laptop'
           />
           <span className='inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 animate-pulse'>
-            Available for Work
+            {t.hero.availableForWork}
           </span>
         </div>
         <p className='text-4xl font-light text-center md:text-5xl'>
-          Hi, I’m a front-end developer who enjoys designing and building clean,
-          user-friendly projects
+          {t.hero.intro}
           <span className='group relative inline-block'>
             <span className='opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out'>
-              by using Javascript and various frameworks.
+              {t.hero.introHover}
             </span>
           </span>
         </p>
@@ -58,7 +60,7 @@ export const HeroSection = () => {
             className='inline-flex items-center gap-2 border border-black/15 px-6 h-10 rounded-xl z-20'
             onClick={scrollToProjects}
           >
-            <span className='font-semibold'>Explore My Work</span>
+            <span className='font-semibold'>{t.hero.exploreMyWork}</span>
             <ArrowDown className='size-4' />
           </button>
           <button
@@ -66,7 +68,7 @@ export const HeroSection = () => {
             onClick={scrollToContact}
           >
             <span>👋🏻</span>
-            <span className='font-semibold'>Let's Connect</span>
+            <span className='font-semibold'>{t.hero.letsConnect}</span>
           </button>
         </div>
       </div>

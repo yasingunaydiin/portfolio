@@ -18,9 +18,11 @@ export default function RootLayout({
       <head>
         <link rel='icon' href='/favicon.ico' />
       </head>
-      <body>{children}</body>
-      <SpeedInsights />
-      <Analytics />
+      <body>
+        {children}
+        <SpeedInsights />
+        <Analytics />
+      </body>
     </html>
   );
 }
